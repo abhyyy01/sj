@@ -1,0 +1,23 @@
+{
+  "oauthAccount": {
+    "accountUuid": "375b585d-f62a-40cf-84fd-601c4ed47bab",
+    "emailAddress": "cowork-3p@localhost",
+    "organizationUuid": "00000000-0000-4000-8000-000000000001"
+  },
+  "firstStartTime": "2026-09-18T10:29:21.903Z",
+  "firstStartVersion": "2.1.271",
+  "machineID": "648c52b24bac7d3be6c070bff86057d4e07a72fd3a38d5995bff93de236939ad",
+  "opusProMigrationComplete": true,
+  "sonnet1m45MigrationComplete": true,
+  "seenNotifications": {},
+  "hasResetAutoModeOptInForDefaultOffer": true,
+  "migrationVersion": 14,
+  "userID": "4874930a2d9934a9882856c38f7878a6f2f4d2426657ea4677124954cb4bac61",
+  "pluginUsage": {
+    "anthropic-skills@inline": {
+      "usageCount": 0,
+      "lastUsedAt": 1789727362715,
+      "lastUsedNumStartups": 0
+    }
+  }
+}

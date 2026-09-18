@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Student Workload Management System</title>
+    <link rel="stylesheet" href="styles.css?v=2026091812">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="login-page" class="login-page active">
+        <div class="login-container">
+            <div class="login-content">
+                <div class="login-header">
+                    <div class="login-logo">📚</div>
+                    <h1>Student Workload Management</h1>
+                    <p>Track your academic journey with ease</p>
+                </div>
+
+                <form id="login-form" class="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email or Username</label>
+                        <input type="text" id="login-email" class="input-field" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" class="input-field" placeholder="Enter your password" required>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="remember-me">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                </form>
+
+                <div class="login-divider">
+                    <span>or continue with</span>
+                </div>
+
+                <div class="social-login">
+                    <button type="button" class="social-btn">
+                        <span>🔗</span>
+                        <span>Google</span>
+                    </button>
+                    <button type="button" class="social-btn">
+                        <span>📘</span>
+                        <span>Facebook</span>
+                    </button>
+                </div>
+
+                <div class="login-footer">
+                    <p>Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
+                </div>
+            </div>
+
+            <div class="signup-content" style="display: none;">
+                <div class="login-header">
+                    <div class="login-logo">📚</div>
+                    <h1>Create Account</h1>
+                    <p>Start tracking your academic progress today</p>
+                </div>
+
+                <form id="signup-form" class="login-form">
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" class="input-field" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" class="input-field" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" class="input-field" placeholder="Create a password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-confirm">Confirm Password</label>
+                        <input type="password" id="signup-confirm" class="input-field" placeholder="Confirm your password" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                </form>
+
+                <div class="login-footer">
+                    <p>Already have an account? <a href="#" id="show-login">Sign in</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="login-illustration">
+            <div class="illustration-content">
+                <h2>Welcome Back!</h2>
+                <p>Manage your academic workload, track your mental health, and achieve your goals.</p>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">📊</span>
+                        <span>Performance Tracking</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🧠</span>
+                        <span>Mental Health Monitoring</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Task Management</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📈</span>
+                        <span>Progress Analytics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Daily Mood Check Modal -->
+    <div id="mood-check-modal" class="mood-check-modal">
+        <div class="mood-check-content">
+            <div class="mood-check-header">
+                <h2>How are you feeling today?</h2>
+                <p>Rate your mood on a scale of 1-10</p>
+            </div>
+            <div class="mood-scale">
+                <div class="mood-scale-labels">
+                    <span>😢 Bad</span>
+                    <span>😄 Great</span>
+                </div>
+                <div class="mood-scale-numbers" id="mood-scale-numbers">
+                    <button class="mood-number" data-mood="1">1</button>
+                    <button class="mood-number" data-mood="2">2</button>
+                    <button class="mood-number" data-mood="3">3</button>
+                    <button class="mood-number" data-mood="4">4</button>
+                    <button class="mood-number" data-mood="5">5</button>
+                    <button class="mood-number" data-mood="6">6</button>
+                    <button class="mood-number" data-mood="7">7</button>
+                    <button class="mood-number" data-mood="8">8</button>
+                    <button class="mood-number" data-mood="9">9</button>
+                    <button class="mood-number" data-mood="10">10</button>
+                </div>
+                <div class="mood-animation-container">
+                    <div class="mood-emoji-display" id="mood-emoji-display">😊</div>
+                    <div class="mood-particles" id="mood-particles"></div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block" id="submit-mood-check">Continue</button>
+        </div>
+    </div>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="menu-toggle" id="menu-toggle">☰</button>
+        <h1 class="mobile-title">SWMS</h1>
+        <button class="settings-btn" id="mobile-settings-btn">⚙️</button>
+    </header>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="logo">
+                <h2>📚 SWMS</h2>
+                <p>Student Workload Management</p>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-item active" data-view="dashboard">
+                    <span class="icon">📊</span>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-view="performance">
+                    <span class="icon">📈</span>
+                    <span>Performance</span>
+                </button>
+                <button class="nav-item" data-view="mental-health">
+                    <span class="icon">🧠</span>
+                    <span>Mental Health</span>
+                </button>
+                <button class="nav-item" data-view="tasks">
+                    <span class="icon">✓</span>
+                    <span>Tasks</span>
+                </button>
+                <button class="nav-item" data-view="settings">
+                    <span class="icon">⚙️</span>
+                    <span>Settings</span>
+                </button>
+            </nav>
+            <div class="user-profile">
+                <div class="avatar">👤</div>
+                <div class="user-info">
+                    <h4>Student User</h4>
+                    <p>Senior Year</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dashboard View -->
+            <section id="dashboard-view" class="view active">
+                <div class="header">
+                    <h1>Dashboard Overview</h1>
+                    <p class="date" id="current-date"></p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📚</div>
+                        <div class="stat-info">
+                            <h3 id="pending-tasks">0</h3>
+                            <p>Pending Tasks</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-info">
+                            <h3 id="current-gpa">0.0</h3>
+                            <p>Current GPA</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-info">
+                            <h3 id="completion-rate">0%</h3>
+                            <p>Completion Rate</p>
+                        </div>
+                    </div>
+                    <div class="stat-card stress-card">
+                        <div class="stat-icon">🧠</div>
+                        <div class="stat-info">
+                            <h3 id="stress-level">Low</h3>
+                            <p>Stress Level</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card weekly-polygon-card">
+                        <h3>📊 Weekly Performance Radar</h3>
+                        <p class="card-subtitle">Touch the graph to see details</p>
+                        <div class="polygon-container">
+                            <canvas id="weeklyPolygon"></canvas>
+                            <div class="polygon-tooltip" id="polygon-tooltip"></div>
+                        </div>
+                    </div>
+
+                    <div class="card upcoming-deadlines">
+                        <h3>📅 Upcoming Deadlines</h3>
+                        <div id="deadlines-list" class="deadlines-list">
+                            <p class="empty-state">No upcoming deadlines</p>
+                        </div>
+                    </div>
+
+                    <div class="card recommendations">
+                        <h3>💡 Recommendations</h3>
+                        <div id="recommendations-list" class="recommendations-list">
+                            <div class="recommendation-item">
+                                <span class="rec-icon">✨</span>
+                                <p>Take a 10-minute break every hour to maintain focus</p>
+                            </div>
+                            <div class="recommendation-item">
+                                <span class="rec-icon">📖</span>
+                                <p>Schedule study sessions during your peak productivity hours</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Performance Tracker View -->
+            <section id="performance-view" class="view">
+                <div class="header">
+                    <h1>Performance Tracker</h1>
+                    <p>Monitor your academic progress</p>
+                </div>
+
+                <div class="performance-controls">
+                    <button class="btn btn-primary" id="add-grade-btn">+ Add Grade</button>
+                </div>
+
+                <div class="performance-grid">
+                    <div class="card gpa-card">
+                        <h3>🎓 GPA Trend</h3>
+                        <div class="gpa-display">
+                            <div class="gpa-value" id="perf-gpa">0.00</div>
+                            <p>Current GPA</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="gpaChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="card grades-list-card">
+                        <h3>📝 Recent Grades</h3>
+                        <div id="grades-list" class="grades-list">
+                            <p class="empty-state">No grades recorded yet</p>
+                        </div>
+                    </div>
+
+                    <div class="card completion-card">
+                        <h3>✓ Assignment Completion</h3>
+                        <div class="completion-stats">
+                            <div class="completion-circle">
+                                <svg viewBox="0 0 36 36" class="circular-chart">
+                                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                    <path class="circle" id="completion-circle" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                    <text x="18" y="20.35" class="percentage" id="completion-percentage">0%</text>
+                                </svg>
+                            </div>
+                            <div class="completion-details">
+                                <p><strong id="completed-count">0</strong> Completed</p>
+                                <p><strong id="total-count">0</strong> Total</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mental Health Assessment View -->
+            <section id="mental-health-view" class="view">
+                <div class="header">
+                    <h1>Mental Health Assessment</h1>
+                    <p>Track your well-being and stress levels</p>
+                </div>
+
+                <div class="mental-health-grid">
+                    <div class="card assessment-card">
+                        <h3>📋 Quick Assessment</h3>
+                        <form id="assessment-form">
+                            <div class="form-group">
+                                <label>How stressed do you feel today?</label>
+                                <div class="slider-container">
+                                    <input type="range" id="stress-slider" min="1" max="10" value="5" class="slider">
+                                    <div class="slider-labels">
+                                        <span>Low</span>
+                                        <span id="stress-value">5</span>
+                                        <span>High</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>How anxious do you feel?</label>
+                                <div class="slider-container">
+                                    <input type="range" id="anxiety-slider" min="1" max="10" value="5" class="slider">
+                                    <div class="slider-labels">
+                                        <span>Low</span>
+                                        <span id="anxiety-value">5</span>
+                                        <span>High</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>How would you rate your mood?</label>
+                                <div class="mood-selector">
+                                    <button type="button" class="mood-btn" data-mood="1">😢</button>
+                                    <button type="button" class="mood-btn" data-mood="2">😟</button>
+                                    <button type="button" class="mood-btn" data-mood="3">😐</button>
+                                    <button type="button" class="mood-btn" data-mood="4">🙂</button>
+                                    <button type="button" class="mood-btn" data-mood="5">😄</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Hours of sleep last night</label>
+                                <input type="number" id="sleep-hours" min="0" max="12" step="0.5" value="7" class="input-field">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">Save Assessment</button>
+                        </form>
+                    </div>
+
+                    <div class="card trends-card">
+                        <h3>📈 Stress Trend (Last 7 Days)</h3>
+                        <div class="chart-container">
+                            <canvas id="stressChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="card wellness-tips">
+                        <h3>💚 Wellness Tips</h3>
+                        <div class="tips-list">
+                            <div class="tip-item">
+                                <span class="tip-icon">🧘</span>
+                                <div>
+                                    <h4>Practice Mindfulness</h4>
+                                    <p>Try 5-10 minutes of meditation daily to reduce stress</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <span class="tip-icon">🏃</span>
+                                <div>
+                                    <h4>Stay Active</h4>
+                                    <p>Regular exercise can improve mood and reduce anxiety</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <span class="tip-icon">😴</span>
+                                <div>
+                                    <h4>Prioritize Sleep</h4>
+                                    <p>Aim for 7-9 hours of quality sleep each night</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <span class="tip-icon">👥</span>
+                                <div>
+                                    <h4>Connect With Others</h4>
+                                    <p>Social support is crucial for mental well-being</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mood-history">
+                        <h3>😊 Mood History</h3>
+                        <div id="mood-history-list" class="mood-history-list">
+                            <p class="empty-state">No mood records yet</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tasks/Assignment Manager View -->
+            <section id="tasks-view" class="view">
+                <div class="header">
+                    <h1>Task & Assignment Manager</h1>
+                    <p>Organize and track your assignments</p>
+                </div>
+
+                <div class="tasks-controls">
+                    <button class="btn btn-primary" id="add-task-btn">+ Add Task</button>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="pending">Pending</button>
+                        <button class="filter-btn" data-filter="completed">Completed</button>
+                    </div>
+                </div>
+
+                <div class="tasks-grid">
+                    <div class="card tasks-list-card">
+                        <h3>📋 Tasks</h3>
+                        <div id="tasks-list" class="tasks-list">
+                            <p class="empty-state">No tasks yet. Add your first task!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings View -->
+            <section id="settings-view" class="view">
+                <div class="header">
+                    <h1>Settings</h1>
+                    <p>Manage your preferences</p>
+                </div>
+
+                <div class="settings-grid">
+                    <div class="card">
+                        <h3>🔔 Reminders</h3>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Daily Mood Check</h4>
+                                <p>Get reminded to log your mood daily</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="mood-reminder-toggle" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Mood Check Time</h4>
+                                <p>When to show the mood check prompt</p>
+                            </div>
+                            <input type="time" id="mood-reminder-time" class="input-field" value="09:00">
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Task Reminders</h4>
+                                <p>Get notified about upcoming deadlines</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="task-reminder-toggle" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Remind me before deadline</h4>
+                                <p>How many hours before a task is due</p>
+                            </div>
+                            <select id="reminder-hours" class="input-field">
+                                <option value="1">1 hour</option>
+                                <option value="2">2 hours</option>
+                                <option value="6">6 hours</option>
+                                <option value="12">12 hours</option>
+                                <option value="24" selected>1 day</option>
+                                <option value="48">2 days</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>🎨 Appearance</h3>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Animations</h4>
+                                <p>Enable smooth transitions and effects</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="animations-toggle" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>📱 Data</h3>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary btn-block" id="export-data-btn">Export Data</button>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary btn-block" id="clear-data-btn">Clear All Data</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Modal for Adding Grade -->
+    <div id="grade-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Grade</h2>
+                <button class="close-btn" data-modal="grade-modal">&times;</button>
+            </div>
+            <form id="grade-form">
+                <div class="form-group">
+                    <label>Course Name</label>
+                    <input type="text" id="course-name" class="input-field" required>
+                </div>
+                <div class="form-group">
+                    <label>Grade</label>
+                    <input type="number" id="grade-value" class="input-field" min="0" max="4" step="0.1" required>
+                    <small>Enter GPA value (0.0 - 4.0)</small>
+                </div>
+                <div class="form-group">
+                    <label>Credits</label>
+                    <input type="number" id="grade-credits" class="input-field" min="1" max="6" value="3" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" data-modal="grade-modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Grade</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for Adding Task -->
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Task</h2>
+                <button class="close-btn" data-modal="task-modal">&times;</button>
+            </div>
+            <form id="task-form">
+                <div class="form-group">
+                    <label>Task Title</label>
+                    <input type="text" id="task-title" class="input-field" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="task-description" class="input-field" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Due Date</label>
+                    <input type="date" id="task-date" class="input-field" required>
+                </div>
+                <div class="form-group">
+                    <label>Priority</label>
+                    <select id="task-priority" class="input-field">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" data-modal="task-modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js?v=2026091812"></script>
+</body>
+</html>
